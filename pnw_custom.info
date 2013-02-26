@@ -1,0 +1,10 @@
+name = "PNW Custom"
+description = "Helper module for PNW Handbooks"
+core = 7.x
+version = "7.x-1.0"
+core = "7.x"
+package = "PNW"
+
+stylesheets[all][] = pnw_custom.css
+scripts[] = pnw_custom.js
+

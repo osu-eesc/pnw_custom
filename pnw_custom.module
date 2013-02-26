@@ -1,0 +1,61 @@
+<?php
+
+
+/**
+ * Implementation of hook_views_get_view().
+ * EVA display should only be executed if on <front_page>
+ */
+
+// function pnw_custom_views_api() {
+// 	return array(
+// 		'api' => '3.0',
+// 	);
+// }
+
+// $view_id = 'eva_homephoto';
+// $display_id = 'homephoto';
+// $arguments = NULL;
+
+//dpm($views);
+ //$view = views_get_view($view_id)
+	//->set_display($display_id)
+	//->execute();
+	//return $view->render();
+
+
+// function pnw_custom_embed_view($view_id, $display_id, $arguments) {
+// 	$view = views_get_view($view_id);
+//   $view->set_display($display_id);
+//   $view->set_arguments($arguments);
+//   $view->pre_execute();
+//   $view->execute();
+//   return $view->render();
+
+ //  $view = views_get_view($view_id)
+	// ->set_display($display_id)
+	// ->execute();
+	// return $view->render();
+	// dpm($view->render());
+// }
+
+//pnw_custom_embed_view($view_id, $display_id, $arguments);
+
+
+// info: The name of the block.
+    //$view = views_get_view('gozulla_directory');
+    //$view->set_display('bike');
+    //$view->is_cacheable = FALSE;  
+    //$view->execute();  
+    //dpm($view->exposed_raw_input);
+
+
+//     $view = views_get_view('gozulla_directory')
+//     ->set_display('defaults');
+//     ->set_items_per_page(0);
+//     ->execute();
+// $results = $view->result;
+//     views_get_view('');
+
+
+
+ 

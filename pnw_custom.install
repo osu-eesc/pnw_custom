@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the PNW Custom module.
+ *
+ */
+
+
+/**
+ * Implements hook_uninstall().
+ */
+// function pnw_custom_uninstall() {
+
+// }
+
+/**
+ * Make pnw_custom content pluggable, move body/format into a serialized options
+ * array, add plugin key field.
+ */
+// function pnw_custom_update_6100() {
+  
+// }
+
+
+
