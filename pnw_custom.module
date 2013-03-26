@@ -1,61 +1,44 @@
 <?php
 
+/**
+ * Implements hook_form_alter()
+ */
+function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
+ //  dpm($form_id, 'form_id');
+	//dpm($form, 'form');
+
+  switch ($form_id) {
+    
+    case 'views_form_related_images_reorder_images': 
+
+      $form['actions']['submit']['#submit'][] = 'reorder_images_submit';
+      
+    break;
+
+    case 'image_node_form':
+      // add default text to image field
+      $form['field_image']['und'][0]['#default_value']['alt'] = t('Photo of insect');
+    break;
+
+    case 'homepagephoto_node_form':
+      // add default text to image field
+      $form['field_photo']['und'][0]['#default_value']['alt'] = t('Homepage photo');
+
+    break;
+
+  }
+
+}
+
+
 
 /**
- * Implementation of hook_views_get_view().
- * EVA display should only be executed if on <front_page>
+ * Redirects user to node view after reordering images
  */
-
-// function pnw_custom_views_api() {
-// 	return array(
-// 		'api' => '3.0',
-// 	);
-// }
-
-// $view_id = 'eva_homephoto';
-// $display_id = 'homephoto';
-// $arguments = NULL;
-
-//dpm($views);
- //$view = views_get_view($view_id)
-	//->set_display($display_id)
-	//->execute();
-	//return $view->render();
-
-
-// function pnw_custom_embed_view($view_id, $display_id, $arguments) {
-// 	$view = views_get_view($view_id);
-//   $view->set_display($display_id);
-//   $view->set_arguments($arguments);
-//   $view->pre_execute();
-//   $view->execute();
-//   return $view->render();
-
- //  $view = views_get_view($view_id)
-	// ->set_display($display_id)
-	// ->execute();
-	// return $view->render();
-	// dpm($view->render());
-// }
-
-//pnw_custom_embed_view($view_id, $display_id, $arguments);
-
-
-// info: The name of the block.
-    //$view = views_get_view('gozulla_directory');
-    //$view->set_display('bike');
-    //$view->is_cacheable = FALSE;  
-    //$view->execute();  
-    //dpm($view->exposed_raw_input);
-
-
-//     $view = views_get_view('gozulla_directory')
-//     ->set_display('defaults');
-//     ->set_items_per_page(0);
-//     ->execute();
-// $results = $view->result;
-//     views_get_view('');
-
+function reorder_images_submit($form, &$form_state) {
+  drupal_set_message('Images reordered');
+  $form_state['redirect'] = 'node/' . $form_state['build_info']['args'][0]->args[0];
+}
 
 
  
