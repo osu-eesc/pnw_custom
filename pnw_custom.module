@@ -5,17 +5,33 @@
  */
 function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
  //  dpm($form_id, 'form_id');
-	//dpm($form, 'form');
+  //dpm($form, 'form');
 
   switch ($form_id) {
     
-    case 'views_form_related_images_reorder_images': 
+    case 'views_form_related_images_reorder_images':
 
       $form['actions']['submit']['#submit'][] = 'reorder_images_submit';
       
     break;
 
+    case 'search_block_form':
+      //dpm($form, 'form');
+      $form['search_block_form']['#size'] = 20;
+      //$form['actions']['submit']['#value'] = 'go!';
+
+    break;
+
     case 'image_node_form':
+      /**
+      * Implements hook_wysiwyg_editor_settings_alter()
+      */
+      function pnw_custom_wysiwyg_editor_settings_alter(&$settings, $context) {
+        if ($context['profile']->editor == 'ckeditor') {
+          $settings['height'] = 100;
+        }
+      }
+
       // add default text to image field
       $form['field_image']['und'][0]['#default_value']['alt'] = t('Photo of insect');
     break;
@@ -25,6 +41,18 @@ function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
       $form['field_photo']['und'][0]['#default_value']['alt'] = t('Homepage photo');
 
     break;
+
+    case 'announcement_node_form':
+      /**
+      * Implements hook_wysiwyg_editor_settings_alter()
+      */
+      function pnw_custom_wysiwyg_editor_settings_alter(&$settings, $context) {
+        if ($context['profile']->editor == 'ckeditor') {
+          $settings['height'] = 400;
+        }
+      }
+
+    break; 
 
   }
 
@@ -39,6 +67,5 @@ function reorder_images_submit($form, &$form_state) {
   drupal_set_message('Images reordered');
   $form_state['redirect'] = 'node/' . $form_state['build_info']['args'][0]->args[0];
 }
-
 
  
