@@ -5,10 +5,10 @@
  */
 function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
  //  dpm($form_id, 'form_id');
-  //dpm($form, 'form');
+  
 
   switch ($form_id) {
-    
+    // dpm($form, 'form');
     case 'views_form_related_images_reorder_images':
 
       $form['actions']['submit']['#submit'][] = 'reorder_images_submit';
@@ -17,8 +17,17 @@ function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
 
     case 'search_block_form':
       //dpm($form, 'form');
-      $form['search_block_form']['#size'] = 20;
-      //$form['actions']['submit']['#value'] = 'go!';
+      $form['search_block_form']['#size'] = 16;
+      $form['actions']['submit']['#value'] = 'go!';
+      // unset($form['basic']['keys']['#title']);
+
+    break;
+
+    case 'search_form':
+      //dpm($form, 'form');
+      unset($form['basic']['keys']['#title']);
+      // $form['basic']['keys']['#size'] = 18;
+      $form['basic']['submit']['#value'] = 'go!';
 
     break;
 
