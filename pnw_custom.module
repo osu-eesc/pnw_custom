@@ -16,17 +16,30 @@ function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
     break;
 
     case 'search_block_form':
-      //dpm($form, 'form');
+      //dpm($_GET, 'get values');
       $form['search_block_form']['#size'] = 16;
       $form['actions']['submit']['#value'] = 'go!';
-      // unset($form['basic']['keys']['#title']);
+      // set default text for search input
+      if (isset($_GET['q']) && (strpos($_GET['q'], 'search/content/') !== FALSE) ) {
+        $search_text = str_replace('search/content/', '', $_GET['q']);
+      }
+      else {
+        $search_text = 'Enter search terms';
+      }
+      
+      $form['search_block_form']['#default_value'] = $search_text;
+     
+      $form['search_block_form']['#attributes'] = array(
+        'onfocus' => "if (this.value == '$search_text') {this.value = '';}",
+        'onblur' => "if (this.value == '') {this.value = '$search_text';}");
 
     break;
+
 
     case 'search_form':
       //dpm($form, 'form');
       unset($form['basic']['keys']['#title']);
-      // $form['basic']['keys']['#size'] = 18;
+      $form['basic']['keys']['#size'] = 18;
       $form['basic']['submit']['#value'] = 'go!';
 
     break;
@@ -66,8 +79,6 @@ function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
   }
 
 }
-
-
 
 /**
  * Redirects user to node view after reordering images
