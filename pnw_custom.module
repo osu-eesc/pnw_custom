@@ -17,8 +17,13 @@ function pnw_custom_form_alter(&$form, &$form_state, $form_id) {
 
     case 'search_block_form':
       //dpm($_GET, 'get values');
-      $form['search_block_form']['#size'] = 16;
-      $form['actions']['submit']['#value'] = 'go!';
+      $form['actions']['submit'] = array(
+        '#type' => 'image_button',
+        '#src' => drupal_get_path('theme', 'pnwhandbook') . '/css/images/magnify.png',
+      );
+      
+      $form['search_block_form']['#size'] = 22;
+
       // set default text for search input
       if (isset($_GET['q']) && (strpos($_GET['q'], 'search/content/') !== FALSE) ) {
         $search_text = str_replace('search/content/', '', $_GET['q']);
